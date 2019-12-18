@@ -39,29 +39,33 @@
 <body>
     <div class="container">
         <div class="row rounded my-0">
-            <div class="col-md-3 bg-secondary vh-lg-100 overflow-auto" id="sidebar"></div>
+            <div class="col-md-3 bg-secondary vh-lg-100 overflow-auto" id="sidebar">
+                <div></div>
+            </div>
             <div class="col-md-9 bg-light vh-100 d-flex flex-column flex-grow-1">
-                <div class=" flex-grow-1 overflow-auto py-2" id="messages"></div>
+                <div class=" flex-grow-1 overflow-auto py-2" id="messages">
+
+                </div>
 
                 <div class="flex-shrink-0 py-2 ">
-                    <div class="row">
+                    <div class="row mb-1">
                         <div class="col-lg-2 d-lg-block d-none ">
                             <a class="navbar-brand border bg-warning border-danger rounded px-2  py-1">Chat-Room</a>
                         </div>
                         <div class="col-lg-10 col-sm-12 ">
                             <form class="form" id="message-form">
                                 <div class="form-row">
-                                    <div class="col-8">
+                                    <div class="col-10">
                                         <input class="form-control bg-white" type="text" placeholder="Message" required
                                             autocomplete="off">
                                     </div>
-                                    <div class="col-4 text-center d-flex justify-content-around">
+                                    <div class="col-2 text-center d-flex justify-content-around">
                                         <button class="btn btn-success" type="submit">
                                             <label class="d-lg-inline-block d-none mb-0 pr-2">SEND</label><i
                                                 class="fa fa-paper-plane"></i>
                                         </button>
 
-                                        <button class="btn btn-danger" id="send-location" type="submit">
+                                        <button class="btn btn-danger d-none" id="send-location" type="submit">
                                             <label class="d-lg-inline-block d-none mb-0 pr-2">
                                                 LOCATION</label><i class="fa fa-street-view"></i>
                                         </button>
