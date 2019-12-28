@@ -117,11 +117,14 @@ io.on('connection', (socket) => {
 
 //Getting home page
 app.get('', (req, res) => {
-    res.render('index.html')
+    res.render('happy-new-year-2020.html')
 })
 
 app.get('/chat.html', (req, res) => {
     res.render('chat.html')
+})
+app.get('/happy-new-year-2020.html', (req, res) => {
+    res.render('happy-new-year-2020.html')
 })
 //so that it can communicate with both  server and socket.io
 server.listen(port, () => {

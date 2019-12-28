@@ -9,9 +9,50 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>Chat-App</title>
+    <style>
+        .bg-nav {
+            background: #AA076B;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #61045F, #AA076B);
+            background: linear-gradient(to right, #61045F, #AA076B);
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container-fluid bg-nav  border-warning border-bottom">
+        <div class="container px-0">
+
+            <nav class="navbar navbar-expand-lg navbar-light px-0">
+
+                <a class="navbar-brand" href="#">
+                    <img src="./img/lb.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                    <span class="text-primary">linkbook.in</span>
+                </a>
+                <button class="navbar-toggler border-0 text-primary" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class=""><i class="fa fa-align-right "></i></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0 ">
+                        <li class="nav-item active">
+                            <a class="nav-link text-warning" href="./index.html">Chat-Room</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning" href="./happy-new-year-2020.html">Wish 2020</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0 d-lg-block d-none">
+                        <input class="form-control mr-sm-2 ml-sm-4" type="search" placeholder="Search"
+                            aria-label="Search">
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </div>
     <div class="container-fluid bg-warning ">
         <div class="row vh-100 flex-column justify-content-center align-items-center mb-0">
             <div class="col-md-3 bg-dark text-white py-5 rounded">
@@ -40,7 +81,7 @@
                         with your special one and make her/him feel special!</p>
 
                     <div class="d-flex justify-content-around">
-                        <div class=" mb-3 text-muted text-center small">&copy; Chat-Room 2019-20</div>
+                        <div class=" mb-3 text-muted text-center small">&copy; linkbook.in 2019-20</div>
                         <div class="small"> <span> <a
                                     href="https://www.instagram.com/accounts/login/?next=%2Fsk_sahil_official%2F&source=follow"
                                     target="_blank">Developer :
@@ -60,6 +101,12 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
     </script>
 </body>
 
