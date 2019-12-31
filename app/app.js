@@ -38,14 +38,7 @@ app.use(session({
     resave: true
 }))
 app.use(flash())
-if (!session.visitors) {
-    session.visitors = parseInt(fs.readFileSync('visitors.txt').toString())
-    fs.writeFileSync('visitors.txt', ++(session.visitors))
-    console.log(session.visitors)
-} else {
-    session.visitors = parseInt(fs.readFileSync('visitors.txt').toString())
-    console.log(session.visitors)
-}
+
 const server = http.createServer(app)
 const io = socketio(server)
 
@@ -126,10 +119,20 @@ io.on('connection', (socket) => {
     })
 
 })
+app.use((req, res, next) => {
+
+    if (!req.session.visitors) {
+        req.session.visitors = parseInt(fs.readFileSync('visitors.txt').toString())
+        fs.writeFileSync('visitors.txt', ++(req.session.visitors))
+    } else {
+        req.session.visitors = parseInt(fs.readFileSync('visitors.txt').toString())
+    }
+    next()
+})
 //Getting home page
 app.get('', (req, res) => {
     res.render('happy-new-year-2020', {
-        visitors: session.visitors
+        visitors: req.session.visitors
     })
 })
 app.get('/chat-room-login', (req, res) => {
@@ -141,7 +144,9 @@ app.get('/chat-room', (req, res) => {
     res.render('chat-room')
 })
 app.get('/happy-new-year-2020', (req, res) => {
-    res.render('happy-new-year-2020')
+    res.render('happy-new-year-2020', {
+        visitors: req.session.visitors
+    })
 })
 //so that it can communicate with both  server and socket.io
 server.listen(port, () => {
