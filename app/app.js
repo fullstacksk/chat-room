@@ -1,11 +1,13 @@
 const path = require('path')
 const http = require('http')
+const fs = require('fs')
 const express = require('express')
 const socketio = require('socket.io')
 const Filter = require('bad-words')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const flash = require('connect-flash')
+const ejs = require('ejs')
 const {
     generateMessage
 } = require('./utils/message')
@@ -21,7 +23,14 @@ const app = express()
 const port = process.env.PORT || 3000
 //setting up static directory (PUBLIC) to serve
 const publicDirPath = path.join(__dirname, '../public')
+const viewsPath = path.join(__dirname, '../views')
 app.use(express.static(publicDirPath))
+
+
+//setup handlebar engine and views location
+app.set("view engine", "ejs")
+app.set("views", viewsPath) //By default its paths is setted to '../views' as folder name
+// hbs.registerPartials(partialPaths)
 app.use(cookieParser())
 app.use(session({
     secret: 'secret123',
@@ -29,11 +38,14 @@ app.use(session({
     resave: true
 }))
 app.use(flash())
-// const viewsPath = path.join(__dirname, '../views')
-// console.log(viewsPath)
-//setup handlebar engine and views location
-// app.set("view engine", "htm")
-// app.set("views", viewsPath) //By default its paths is setted to '../views' as folder name
+if (!session.visitors) {
+    session.visitors = parseInt(fs.readFileSync('visitors.txt').toString())
+    fs.writeFileSync('visitors.txt', ++(session.visitors))
+    console.log(session.visitors)
+} else {
+    session.visitors = parseInt(fs.readFileSync('visitors.txt').toString())
+    console.log(session.visitors)
+}
 const server = http.createServer(app)
 const io = socketio(server)
 
@@ -114,17 +126,22 @@ io.on('connection', (socket) => {
     })
 
 })
-
 //Getting home page
 app.get('', (req, res) => {
-    res.render('happy-new-year-2020.html')
+    res.render('happy-new-year-2020', {
+        visitors: session.visitors
+    })
+})
+app.get('/chat-room-login', (req, res) => {
+
+    res.render("chat-room-login")
 })
 
-app.get('/chat.html', (req, res) => {
-    res.render('chat.html')
+app.get('/chat-room', (req, res) => {
+    res.render('chat-room')
 })
-app.get('/happy-new-year-2020.html', (req, res) => {
-    res.render('happy-new-year-2020.html')
+app.get('/happy-new-year-2020', (req, res) => {
+    res.render('happy-new-year-2020')
 })
 //so that it can communicate with both  server and socket.io
 server.listen(port, () => {

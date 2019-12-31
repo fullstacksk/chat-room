@@ -52,7 +52,7 @@ socket.emit('join', {
 }, (error) => {
     if (error) {
         alert(error)
-        location.href = "/"
+        location.href = "/chat-room-login"
     }
 })
 
